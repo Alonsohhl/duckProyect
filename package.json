@@ -1,0 +1,40 @@
+{
+  "name": "ducksapi",
+  "version": "1.0.0",
+  "description": "find information about Ducks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon de src/index.js",
+    "deploy": "NODE_ENV=production src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alonsohhl/duckProyect.git"
+  },
+  "author": "Alonso Huayta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alonsohhl/duckProyect/issues"
+  },
+  "homepage": "https://github.com/Alonsohhl/duckProyect#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3",
+    "prettier": "2.0.4"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.4.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.21.6"
+  }
+}
