@@ -4,9 +4,10 @@
   "description": "find information about Ducks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=test nodemon --exec 'mocha --timeout 5000 -R spec'",
     "start": "nodemon de src/index.js",
-    "deploy": "NODE_ENV=production src/index.js"
+    "deploy": "NODE_ENV=production src/index.js",
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
@@ -19,14 +20,19 @@
   },
   "homepage": "https://github.com/Alonsohhl/duckProyect#readme",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
+    "mocha": "^7.1.1",
     "nodemon": "^2.0.3",
-    "prettier": "2.0.4"
+    "nyc": "^15.0.1",
+    "prettier": "2.0.4",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "express-validator": "^6.4.0",

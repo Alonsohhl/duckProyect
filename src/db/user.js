@@ -1,5 +1,4 @@
 var bcrypt = require('bcryptjs')
-// const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = require('../config/envConfig')
 
@@ -45,26 +44,8 @@ module.exports = function (sequelize, DataTypes) {
   }
 
   User.beforeCreate((user) => {
-    user.loginPassword = bcrypt.hashSync(
-      user.loginPassword,
-      bcrypt.genSaltSync(10),
-      null
-    )
+    user.loginPassword = bcrypt.hashSync(user.loginPassword, bcrypt.genSaltSync(10), null)
   })
-
-  //   User.prototype.setPassword = function (password) {
-  //     this.salt = crypto.randomBytes(16).toString('hex')
-  //     this.hash = crypto
-  //       .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
-  //       .toString('hex')
-  //   }
-
-  //   User.prototype.validatePassword = function (password) {
-  //     const hash = crypto
-  //       .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
-  //       .toString('hex')
-  //     return this.hash === hash
-  //   }
 
   User.prototype.generateJWT = function () {
     const today = new Date()
@@ -89,9 +70,9 @@ module.exports = function (sequelize, DataTypes) {
     }
   }
 
-  //   User.associate = function(models) {
-  //     models.t01fefm.hasMany(models.T01FCBO, { foreignKey: 'id_Usuario' })
-  //   }
+  User.associate = function (models) {
+    models.user.hasMany(models.dataFed, { foreignKey: 'id_user' })
+  }
 
   return User
 }

@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // app.use(passport.initialize())
 // app.use(passport.session())
-app.use('/', BTRoutes)
+app.use('/api/', BTRoutes)
 
 // ======== launch app ========
 
@@ -56,3 +56,5 @@ db.sequelize.sync().then(function () {
     )
   })
 })
+
+module.exports = app

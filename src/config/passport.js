@@ -6,45 +6,7 @@ var LocalStrategy = require('passport-local').Strategy
 const path = require('path')
 var db = require('../db')
 const { JWT_SECRET } = require(path.join(__dirname, 'envConfig.js'))
-// require('../routes/auth/auth.js')
 
-// passport.use(
-//   'login',
-//   new LocalStrategy(
-//     {
-//       usernameField: 'user[loginName]',
-//       passwordField: 'user[loginPassword]'
-//     },
-//     function (loginName, loginPassword, done) {
-//       console.log('xsd')
-//       db.user
-//         .findOne({
-//           where: {
-//             loginName: loginName
-//           }
-//         })
-//         .then(function (dbUser) {
-//           console.log('2')
-//           // If there's no user with the given email
-//           if (!dbUser) {
-//             return done(null, false, {
-//               message: 'Usuario Incorrecto'
-//             })
-//           } else if (!dbUser.validPassword(loginPassword)) {
-//             // If there is a user with the given email, but the password the user gives us is incorrect
-//             return done(null, false, {
-//               message: 'Password Incorrecto'
-//             })
-//           }
-//           // Usuario correcto encontrado
-//           return done(null, dbUser)
-//         })
-//         .catch(done)
-//     }
-//   )
-// )
-
-//Create a passport middleware to handle user registration
 passport.use(
   'signup',
   new LocalStrategy(
@@ -128,16 +90,15 @@ passport.use(
 passport.use(
   new JWTstrategy(
     {
-      //secret we used to sign our JWT
       secretOrKey: JWT_SECRET,
-      //we expect the user to send the token as a query parameter with the name 'secret_token'
-      jwtFromRequest: ExtractJWT.fromUrlQueryParameter('token')
+      // jwtFromRequest: ExtractJWT.fromUrlQueryParameter('token')
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
     },
     async (token, done) => {
       try {
         //Pass the user details to the next middleware
-        console.log(token)
-        return done(null, token.email)
+        return done(null, token)
+        // return done(null, token)
       } catch (error) {
         done(error)
       }
