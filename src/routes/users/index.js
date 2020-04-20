@@ -52,6 +52,12 @@ router.post('/protected', passport.authenticate('jwt', { session: false }), (req
   })
 })
 
+router.post('/info', (req, res, next) => {
+  res.json({
+    message: 'connection'
+  })
+})
+
 router.post('/register', (req, res) => {
   const {
     body: { user }
