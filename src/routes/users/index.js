@@ -22,7 +22,6 @@ router.post('/login', function (req, res, next) {
 })
 
 router.get('/session', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-  console.log(req)
   db.user
     .findOne({
       where: {

@@ -31,18 +31,7 @@ app.set('port', process.env.PORT || 3000)
 app.use(require('morgan')('dev')) // Use morgan to log
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(expressValidator())
-//   Passport middleware
-// app.use(
-//   session({
-//     secret: process.env.JWT_SECRET,
-//     resave: true,
-//     saveUninitialized: true
-//   })
-// )
 
-// app.use(passport.initialize())
-// app.use(passport.session())
 app.use('/api/', BTRoutes)
 
 // ======== launch app ========
