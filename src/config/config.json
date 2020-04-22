@@ -5,7 +5,8 @@
     "database": "DB_DUCKS",
     "host": "35.198.63.188",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "timezone": "-07:00"
   },
   "test": {
     "username": "root",
@@ -13,7 +14,8 @@
     "database": "DB_DUCKS",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "timezone": "-07:00"
   },
   "production": {
     "username": "root",
@@ -21,6 +23,7 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "timezone": "-07:00"
   }
 }

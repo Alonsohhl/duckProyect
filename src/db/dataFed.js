@@ -37,12 +37,14 @@ module.exports = function (sequelize, DataTypes) {
     models.dataFed.belongsTo(models.user, { foreignKey: 'id_user' })
     models.dataFed.belongsTo(models.food, { foreignKey: 'id_food' })
     models.dataFed.belongsTo(models.park, { foreignKey: 'id_park' })
+    models.dataFed.belongsTo(models.schedule, {
+      foreignKey: {
+        name: 'id_schedule',
+        allowNull: true
+      }
+    })
 
-    // models.dataFed.belongsTo(models.schedule, { foreignKey: 'id_schedule' })
-    models.dataFed.hasOne(models.schedule, { foreignKey: 'id_dataFed' })
-    // models.T01FCBO.hasMany(models.T01FCBODET)
-
-    // models.dataFed.hasOne(models.schedule, { foreignKey: 'id_schedule' })
+    // models.dataFed.hasOne(models.schedule, { foreignKey: 'id_dataFed' })
   }
 
   return dataFed

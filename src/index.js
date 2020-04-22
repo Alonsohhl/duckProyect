@@ -3,6 +3,10 @@ var bodyParser = require('body-parser')
 var expressValidator = require('express-validator')
 const app = express()
 const session = require('express-session')
+var schedule = require('node-schedule')
+const { Op } = require('sequelize')
+const moment = require('moment')
+
 // var passport = require('./config/passport')
 require('./config/passport')
 
@@ -44,6 +48,18 @@ db.sequelize.sync().then(function () {
       app.get('port')
     )
   })
+})
+
+schedule.scheduleJob('*/15 * * * *', async function () {
+  const [results, metadata] = await db.sequelize.query(`UPDATE db_ducks.datafeds
+  SET state = 'ACTIVE'
+  WHERE db_ducks.datafeds.time BETWEEN '${moment()
+    .startOf('hour')
+    .format('YYYY-MM-DD HH:mm:ss')}' AND '${moment()
+    .endOf('hour')
+    .format('YYYY-MM-DD HH:mm:ss')}';`)
+
+  console.log(metadata)
 })
 
 module.exports = app

@@ -34,6 +34,36 @@ router.get('/fetchAll', (req, res, next) => {
     })
 })
 
+router.get('/fetchAllOrder', (req, res, next) => {
+  let where = {
+    [op.and]: {}
+  }
+  if (req.query.id) where[op.and].id = req.query.id
+  // if (req.query.Num_Boleta) where[op.and].Num_Boleta = req.query.Num_Boleta
+
+  db.dataFed
+    .findAll({
+      include: [
+        {
+          model: db.user
+        }
+      ],
+      limit: 20,
+      order: [['updatedAt', 'DESC']],
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+      where: where
+    })
+    .then(function (data) {
+      res.status(200).json(data)
+    })
+    .catch((err) => {
+      res.status(404).json({
+        error: 'Data not found ' + err,
+        dataError: err
+      })
+    })
+})
+
 router.post('/insert', (req, res, next) => {
   const {
     body: { data: dataFed }
@@ -54,7 +84,9 @@ router.post('/insert', (req, res, next) => {
 
 router.get('/fetch', (req, res, next) => {
   let where = {
-    [op.and]: {}
+    [op.and]: {
+      state: 'ACTIVE'
+    }
   }
   if (req.query.id) where[op.and].id = req.query.id
   // if (req.query.Num_Boleta) where[op.and].Num_Boleta = req.query.Num_Boleta

@@ -7,5 +7,6 @@ router.use('/feds', passport.authenticate('jwt', { session: false }), require('.
 router.use('/parks', passport.authenticate('jwt', { session: false }), require('./parks'))
 router.use('/kinds', passport.authenticate('jwt', { session: false }), require('./kinds'))
 router.use('/foods', passport.authenticate('jwt', { session: false }), require('./foods'))
+router.use('/schedules', passport.authenticate('jwt', { session: false }), require('./schedules'))
 
 module.exports = router
