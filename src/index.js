@@ -51,9 +51,9 @@ db.sequelize.sync().then(function () {
 })
 
 schedule.scheduleJob('*/15 * * * *', async function () {
-  const [results, metadata] = await db.sequelize.query(`UPDATE db_ducks.datafeds
+  const [results, metadata] = await db.sequelize.query(`UPDATE db_ducks.dataFeds
   SET state = 'ACTIVE'
-  WHERE db_ducks.datafeds.time BETWEEN '${moment()
+  WHERE db_ducks.dataFeds.time BETWEEN '${moment()
     .startOf('hour')
     .format('YYYY-MM-DD HH:mm:ss')}' AND '${moment()
     .endOf('hour')
